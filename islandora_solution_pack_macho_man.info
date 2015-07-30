@@ -1,0 +1,7 @@
+name = "Islandora Macho Man Solution Pack"
+description = "Example module to sing the praises of the Macho Man, oh yeah!"
+dependencies[] = islandora
+dependencies[] = islandora_basic_image
+package = Islandora Solution Packs
+core = 7.x
+version = 7.x-dev
