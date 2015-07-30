@@ -2,6 +2,8 @@
 
 Sample module in order to give you a framework to learn how to query Solr in Islandora, oh yeah!
 
+Based off of the sample module used at Islandora Camp Colorado located [here](https://github.com/daniel-dgi/islandora_solution_pack_meme).
+
 Bootstrapping your VM
 ---------------------
 What good is a tutorial on querying Solr if there’s no content to query?  Follow these steps to give your VM enough data to make this meaningful.
