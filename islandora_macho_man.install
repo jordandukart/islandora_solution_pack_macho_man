@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for the module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function islandora_macho_man_install() {
+  module_load_include('inc', 'islandora', 'includes/solution_packs');
+  islandora_install_solution_pack('islandora_macho_man');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function islandora_macho_man_uninstall() {
+  module_load_include('inc', 'islandora', 'includes/solution_packs');
+  islandora_install_solution_pack('islandora_macho_man', 'uninstall');
+  $variables = array(
+    'islandora_macho_man_restrict_namespace',
+    'islandora_macho_man_force_label_only',
+    'islandora_macho_man_object_url_params',
+    'islandora_macho_man_spinning_thumbs',
+  );
+  array_walk($variables, 'variable_del');
+}

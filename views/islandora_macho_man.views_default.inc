@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_default_views().
  */
-function islandora_solution_pack_macho_man() {
+function islandora_macho_man_views_default_views() {
   $views = array();
 
   $view = new view();

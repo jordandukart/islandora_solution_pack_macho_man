@@ -1,0 +1,105 @@
+<?php
+/**
+ * @file
+ * Hook implementations and callbacks for the Macho Man solution pack.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function islandora_macho_man_menu() {
+  $items['admin/islandora/solution_pack_config/macho'] = array(
+    'title' => 'Macho Man Solution Pack',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('islandora_macho_man_admin_form'),
+    'access arguments' => array('adminisiter site configuration'),
+    'file' => 'includes/admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_islandora_required_objects().
+ */
+function islandora_macho_man_islandora_required_objects(IslandoraTuque $connection) {
+  // Path to this module.
+  $module_path = drupal_get_path('module', 'islandora_macho_man');
+
+  // Macho Man collection.
+  $macho_man_collection = $connection->repository->constructObject('machoman:collection');
+  $macho_man_collection->owner = 'fedoraAdmin';
+  $macho_man_collection->label = 'Macho Man Collection';
+  $macho_man_collection->models = 'islandora:collectionCModel';
+  $macho_man_collection->relationships->add(FEDORA_RELS_EXT_URI, 'isMemberOfCollection', 'islandora:root');
+
+  // TN datastream.
+  $ds = $macho_man_collection->constructDatastream('TN', 'M');
+  $ds->label = 'Thumbnail';
+  $ds->mimetype = 'image/gif';
+  $ds->setContentFromFile("$module_path/data/thumb.gif", FALSE);
+  $macho_man_collection->ingestDatastream($ds);
+
+  // Macho man collection policy.
+  $macho_man_collection_policy = $macho_man_collection->constructDatastream('COLLECTION_POLICY', 'X');
+  $macho_man_collection_policy->label = 'Collection policy';
+  $macho_man_collection_policy->mimetype = 'application/xml';
+  $macho_man_collection_policy->setContentFromFile("$module_path/xml/macho_man_collection_policy.xml", FALSE);
+  $macho_man_collection->ingestDatastream($macho_man_collection_policy);
+  return array(
+    'islandora_macho_man' => array(
+      'title' => 'Islandora Macho Man',
+      'objects' => array(
+        $macho_man_collection,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function islandora_macho_man_views_api($module = NULL, $api = NULL) {
+  return array(
+    "api" => '3.0',
+    'path' => drupal_get_path('module', 'islandora_macho_man') . '/views',
+  );
+}
+
+/**
+ * Implements hook_islandora_solr_query().
+ */
+function islandora_macho_man_islandora_solr_query($qp) {
+  if (variable_get('islandora_macho_man_restrict_namespace', FALSE)) {
+    $qp->solrParams['fq'][] = 'PID:machoman\:*';
+  }
+}
+
+/**
+ * Implements hook_islandora_solr_query_alter().
+ */
+function islandora_macho_man_islandora_solr_query_alter(&$qp) {
+  if (variable_get('islandora_macho_man_force_label_only', FALSE)) {
+    $qp->solrParams['fl'] = 'PID, fgs_label_s';
+  }
+}
+
+/**
+ * Implements hook_islandora_solr_results_alter().
+ */
+function islandora_macho_man_islandora_solr_results_alter(&$search_results, $qp) {
+  if (variable_get('islandora_macho_man_object_url_params', FALSE)) {
+    foreach ($search_results as &$result) {
+      $result['object_url_params'] = array('randy' => 'savage');
+    }
+  }
+}
+
+/**
+ * Implements hook_islandora_solr_object_result_alter().
+ */
+function islandora_macho_man_islandora_solr_object_result_alter(&$search, $qp) {
+  if (variable_get('islandora_macho_man_spinning_thumbs', FALSE)) {
+    $module_path = drupal_get_path('module', 'islandora_macho_man');
+    $search['thumbnail_url'] = "$module_path/data/thumb.gif";
+  }
+}

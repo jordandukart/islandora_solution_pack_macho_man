@@ -112,6 +112,13 @@ dsm($facets, 'facets');
 ```
 An example of a module that does something similar to this while not using the Query Processor directly (boo), is the [Islandora Solr Facet Pages](https://github.com/Islandora/islandora_solr_facet_pages) module.
 
+Available Hooks
+----------------------
+The Islandora Search module provides a multitude of hooks to interact with that are documented in the [api.php](https://github.com/Islandora/islandora_solr_search/blob/7.x/islandora_solr.api.php).
+
+For the sake of this sample we'll demonstrated four of the more commonly used ones. Navigate to
+[`http://localhost:8080/admin/islandora/solution_pack_config/macho`](http://localhost:8080/admin/islandora/solution_pack_config/macho)`. Each checkbox corresponds to a different hook implementation which will effect the outcome of searches. Play around with the options and execute a [simple search](http://localhost:8080/islandora/search) to see how each effects.
+
 Solr Metadata
 ----------------------
 The [Islandora Solr Metadata](https://github.com/Islandora/islandora_solr_metadata) module allows for custom metadata configurations to be driven by Solr on a per content model basis. To do this navigate to [`localhost:8080/admin/islandora/metadata`](localhost:8080/admin/islandora/metadata) and select the Islandora Solr Metadata display radio button and click Save Configuration. NOTE: If the Solr Metadata display configuration is selected and one isn't present for a content model it'll default back to the Dublin Core display.
