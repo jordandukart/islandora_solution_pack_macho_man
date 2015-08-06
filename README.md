@@ -55,13 +55,13 @@ This limits our results to returning just the PID and the label of the object fo
 
 Finding out what’s in your index
 --------------------------------
-This couldn’t be easier.  Simply pop open a web browser and navigate to Solr’s built in schema browser at [`http://localhost:8080/solr/#/core1/schema-browser`](http://localhost:8080/solr/#/core1/schema-browser).  This page will show you everything that’s been indexed.
+This couldn’t be easier.  Simply pop open a web browser and navigate to Solr’s built in schema browser at [`http://localhost:8080/solr/#/collection1/schema-browser`](http://localhost:8080/solr/#/collection1/schema-browser).  This page will show you everything that’s been indexed.
 
 The field names present are just naming conventions.  Each field is prefixed with the datastream it comes from (e.g. MODS or RELS_EXT).  Each field is also suffixed with letters describing the type of field:  ‘m’ for multivalued, ‘s’ for string, and ‘t’ for text.  These can be concatenated, so you’ll often see ‘ms’ or ‘mt’ on the end of field names.
 
 Querying through the Solr Admin
 --------------------------------
-Navigate to [`http://localhost:8080/solr/#/core1/query`](http://localhost:8080/solr/#/core1/query).
+Navigate to [`http://localhost:8080/solr/#/collection1/query`](http://localhost:8080/solr/#/collection1/query).
 
 Construct a query `PID:"machoman:1"` and search. What you see is all the fields and their indexed values for the `machoman:1` object.
 
