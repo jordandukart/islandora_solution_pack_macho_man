@@ -117,7 +117,7 @@ Available Hooks
 The Islandora Search module provides a multitude of hooks to interact with that are documented in the [api.php](https://github.com/Islandora/islandora_solr_search/blob/7.x/islandora_solr.api.php).
 
 For the sake of this sample we'll demonstrated four of the more commonly used ones. Navigate to
-[`http://localhost:8080/admin/islandora/solution_pack_config/macho`](http://localhost:8080/admin/islandora/solution_pack_config/macho)`. Each checkbox corresponds to a different hook implementation which will effect the outcome of searches. Play around with the options and execute a [simple search](http://localhost:8080/islandora/search) to see how each effects.
+[`http://localhost:8080/admin/islandora/solution_pack_config/macho`](http://localhost:8080/admin/islandora/solution_pack_config/macho). Each checkbox corresponds to a different hook implementation which will effect the outcome of searches. Play around with the options and execute a [simple search](http://localhost:8080/islandora/search) to see how each effects.
 
 Solr Metadata
 ----------------------
