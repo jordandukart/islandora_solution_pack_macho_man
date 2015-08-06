@@ -8,7 +8,7 @@ Bootstrapping your VM
 ---------------------
 What good is a tutorial on querying Solr if there’s no content to query?  Follow these steps to give your VM enough data to make this meaningful.
 
-From the admin toolbar, go to Islandora -> Solution pack configuration -> Solution pack required objects.  Scroll down to ‘Islandora Macho Man’ and select the checkbox. Then click the ‘Force reinstall objects’ button.  This will install the collection required for this module.
+From the admin toolbar, go to Islandora -> Solution pack configuration -> Solution pack required objects ([direct link](http://localhost:8080/admin/islandora/solution_pack_config/solution_packs)).  Scroll down to ‘Islandora Macho Man’ and select the checkbox. Then click the ‘Force reinstall objects’ button.  This will install the collection required for this module.
 
 If you’re curious, feel free to check out the source code in the .module file to see how we’re creating this collection in the islandora_required_objects hook.
 
